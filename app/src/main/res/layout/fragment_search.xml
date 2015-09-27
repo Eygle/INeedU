@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/action_search"
+        android:hint="@string/action_search"
+        />
+    <AutoCompleteTextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/action_search"
+        android:hint="@string/hint_position"
+        android:layout_below="@+id/search"
+        />
+
+    <TextView
+        android:id="@+id/categories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location"
+        style="@style/SpinnerLike"
+        />
+
+    <LinearLayout
+        android:id="@+id/driver_licence_needed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/categories"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/driver_licence_choice"
+            />
+        <Switch
+            android:id="@+id/driver_licence_needed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/no"
+            android:textOn="@string/yes"
+            android:textAllCaps="true"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/car_needed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/driver_licence_needed_layout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/car_choice"
+            />
+        <Switch
+            android:id="@+id/car_needed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textOff="@string/no"
+            android:textOn="@string/yes"
+            android:textAllCaps="true"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_search"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

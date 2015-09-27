@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">INeedU</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_menu">Menu</string>
+
+    <string name="no">no</string>
+    <string name="yes">yes</string>
+
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+
+    <string name="action_map">Map</string>
+    <string name="action_search">Search</string>
+    <string name="action_messages">Messages</string>
+    <string name="action_favorites">Favorites</string>
+
+    <string name="hint_position">Location</string>
+
+    <string name="driver_licence_choice">Do you have a driver licence ?</string>
+    <string name="car_choice">Do you have a car ?</string>
+
+    <string-array name="categories">
+        <item>ALL CATEGORIES</item>
+        <item>INFORMATIQUE</item>
+        <item>Cours internet/mail</item>
+        <item>Installation de logiciels</item>
+        <item>Installation de matériels</item>
+        <item>Antivirus</item>
+        <item>Autre</item>
+        <item>JARDINNAGE</item>
+        <item>Coupe de bois</item>
+        <item>Entretient haies/plantes</item>
+        <item>Ramassage de fruits/légumes</item>
+        <item>Tonte de pelouse</item>
+        <item>Autre</item>
+        <item>MAISON</item>
+        <item>Ménage</item>
+        <item>Nettoyage Piscine</item>
+        <item>Repassage/Linge</item>
+        <item>Autre</item>
+        <item>SCOLAIRE</item>
+        <item>Aide aux devoirs</item>
+        <item>Cours particuliers</item>
+        <item>Autre</item>
+        <item>SERVICE AUX PERSONNES</item>
+        <item>Baby Sitting</item>
+        <item>Courses</item>
+        <item>Cuisine</item>
+        <item>Tenir compagnie</item>
+        <item>Autre</item>
+        <item>AUTRE</item>
+        <item></item>
+    </string-array>
+</resources>
