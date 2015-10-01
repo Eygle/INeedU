@@ -2,16 +2,14 @@
 
 /* Controllers */
 
-var INeedUControllers = angular.module('INeedUControllers', ['ngCookies']);
+var INeedUControllers = angular.module('INeedUControllers', []);
 
-INeedUControllers.controller('NavBarCtrl', ['$scope', '$cookies', 'TranslationService',
-    function($scope, $cookies, TranslationService) {
-        TranslationService.getTranslation($scope, $cookies.lang);
+INeedUControllers.controller('NavBarCtrl', ['$scope',
+    function($scope) {
     }]);
 
-INeedUControllers.controller('HomeCtrl', ['$scope', '$cookies','TranslationService',
-    function($scope, $cookies, TranslationService) {
-        TranslationService.getTranslation($scope, $cookies.lang);
+INeedUControllers.controller('HomeCtrl', ['$scope',
+    function($scope) {
         $scope.categories = getCategories();
 
         $scope.query = "";

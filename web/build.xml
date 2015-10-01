@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="QuizzAddict" default="">
+    <target name="-init.properties">
+        <buildnumber />
+
+        <property name="build.dir" value="build" />
+        <property name="dist.dir" value="build/dist" />
+        <property name="dist.preprod.dir" value="build/dist.preprod" />
+
+        <property name="scp.host.dedibox" value="62.210.125.176" />
+
+        <condition property="isWindows">
+            <os family="windows"/>
+        </condition>
+
+        <condition property="local.www.dir" value="C:\wamp\www\local.ineedu" else="/var/www/local.ineedu">
+            <isset property="isWindows"/>
+        </condition>
+    </target>
+
+
+    <target name="-init" depends="-init.properties">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${dist.dir}" />
+    </target>
+
+
+    <target name="-clean" description="Cleanup build artifacts" depends="-init">
+        <delete dir="${dist.dir}" />
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="-prepare" depends="-clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/fr" />
+
+        <copy todir="${basedir}/build/fr">
+            <fileset dir="${basedir}/app/">
+                <include name="**/*.*" />
+            </fileset>
+        </copy>
+
+        <exec executable="php">
+            <arg value="lang/apply-language.php" />
+            <arg value="${basedir}/build/fr" />
+            <arg value="fr-FR" />
+        </exec>
+    </target>
+
+    <target name="-dist.preprod" depends="-prepare">
+        <copy todir="${dist.preprod.dir}">
+            <fileset dir="${basedir}/build/fr">
+                <!--<exclude name="backoffice/**"/>-->
+                <include name="**/**.txt" />
+                <include name="**/**.html" />
+                <include name="**/**.php" />
+                <include name="**/**.jpg" />
+                <include name="**/**.png" />
+                <include name="**/**.gif" />
+                <include name="**/**.js" />
+                <include name="**/**.css" />
+                <include name="**/**.htc" />
+                <include name="**/**.ttf" />
+                <include name="**/.htaccess" />
+            </fileset>
+        </copy>
+    </target>
+
+    <taskdef resource="net/sf/antcontrib/antlib.xml">
+        <classpath>
+            <pathelement location="ant-lib/ant-contrib-1.0b3.jar" />
+        </classpath>
+    </taskdef>
+
+    <target name="publish.locally" depends="-prepare">
+        <delete dir="${local.www.dir}">
+            <include name="**/**" />
+        </delete>
+        <copy todir="${local.www.dir}">
+            <fileset dir="${basedir}/build/fr" includes="*.*" />
+            <fileset dir="${basedir}/build/fr">
+                <include name="**/**" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="deploy.preprod" depends="-dist.preprod">
+        <scp todir="julien@${scp.host.dedibox}:/var/www/ineedu"
+             trust="true" verbose="true" sftp="true" password="missmorbihan56"
+             failonerror="false">
+            <fileset dir="${dist.preprod.dir}">
+                <modified>
+                    <param name="cache.cachefile" value="dedibox.preprod.cache" />
+                </modified>
+                <include name="**/**" />
+            </fileset>
+        </scp>
+    </target>
+</project>

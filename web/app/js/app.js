@@ -4,14 +4,12 @@
 
 var INeedUApp = angular.module('INeedUApp', [
   'ngRoute',
-  'INeedUAnimations',
 
   'INeedUControllers',
   'INeedUFilters',
-  'INeedUServices',
-  
-  'ngMap'
+  'INeedUServices'
 ]);
+//'ngMap'
 
 INeedUApp.config(['$routeProvider',
   function($routeProvider) {
