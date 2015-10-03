@@ -1,0 +1,49 @@
+<div class="col-md-2"></div>
+<div class="main col-md-8 create-demand">
+    <form>
+        <div class="form-group">
+            <label for="title">%title%</label>
+            <input type="text" class="form-control" id="title" ng-model="data.title" />
+        </div>
+        <div class="form-group">
+            <label for="location">%location%</label>
+            <input type="text" class="form-control" id="location" ng-model="data.location" />
+        </div>
+        <div class="form-group">
+            <label for="location">%category%</label>
+            <select name="category" ng-model="category" class="form-control">
+                <option ng-repeat="cat in categories" value="{{cat.id}}" ng-class="{parent: cat.parent}">{{cat.name}}</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <input type="date" class="form-control"
+                   datepicker-popup
+                   ng-model="dt"
+                   is-open="status.opened"
+                   min-date="minDate"
+                   max-date="maxDate"
+                   datepicker-options="dateOptions"
+                   ng-required="true"
+                   close-text="Close" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="duration">%duration%</label>
+            <input id="duration" type="text" ng-model="data.duration" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="remuneration">%remuneration%</label>
+            <div class="input-group">
+                <span class="input-group-addon">&euro;</span>
+                <input id="remuneration" type="number" ng-model="data.remuneration" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description">%description%</label>
+            <textarea id="description" ng-model="data.description" class="form-control" />
+        </div>
+    </form>
+</div>
+<div class="col-md-2"></div>

@@ -2,5 +2,21 @@
   "appName": "INeedU",
   "menuToggle": "Basculer le menu",
   "search": "Rechercher",
-  "minRemuneration": "Rémunération minimale"
+  "minRemuneration": "Rémunération minimale",
+  "settings": "Paramètres",
+  "profile": "profil",
+  "contact": "Contact",
+  "about": "A propos de nous",
+
+  "newPost": "Nouvelle annonce",
+
+  "demand": "Demander de l'aide",
+  "offer": "Proposez vos services",
+
+  "title": "Titre",
+  "location": "Lieu",
+  "category": "Catégorie",
+  "remuneration": "Rémunération",
+  "duration": "Durée de la mission",
+  "description": "Description"
 }
