@@ -51,10 +51,10 @@ function getCategories() {
             id: 13,
             name: "Taille de haies / plantes"
         }, {
-            id: 0,
+            id: 14,
             name: "Coupe de bois"
         }, {
-            id: 0,
+            id: 15,
             name: "Ceuillette"
         }
     ];

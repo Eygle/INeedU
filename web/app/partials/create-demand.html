@@ -1,48 +1,138 @@
 <div class="col-md-2"></div>
 <div class="main col-md-8 create-demand">
+    <h1>%demandTitle%</h1>
     <form>
-        <div class="form-group">
-            <label for="title">%title%</label>
-            <input type="text" class="form-control" id="title" ng-model="data.title" />
-        </div>
-        <div class="form-group">
-            <label for="location">%location%</label>
-            <input type="text" class="form-control" id="location" ng-model="data.location" />
-        </div>
-        <div class="form-group">
-            <label for="location">%category%</label>
-            <select name="category" ng-model="category" class="form-control">
-                <option ng-repeat="cat in categories" value="{{cat.id}}" ng-class="{parent: cat.parent}">{{cat.name}}</option>
-            </select>
-        </div>
-        <div class="input-group">
-            <input type="date" class="form-control"
-                   datepicker-popup
-                   ng-model="dt"
-                   is-open="status.opened"
-                   min-date="minDate"
-                   max-date="maxDate"
-                   datepicker-options="dateOptions"
-                   ng-required="true"
-                   close-text="Close" />
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-        </div>
-        <div class="form-group">
-            <label for="duration">%duration%</label>
-            <input id="duration" type="text" ng-model="data.duration" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="remuneration">%remuneration%</label>
-            <div class="input-group">
-                <span class="input-group-addon">&euro;</span>
-                <input id="remuneration" type="number" ng-model="data.remuneration" class="form-control">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="title">%title%</label>
+                <input type="text" class="form-control" id="title" ng-model="data.title" />
             </div>
         </div>
-        <div class="form-group">
-            <label for="description">%description%</label>
-            <textarea id="description" ng-model="data.description" class="form-control" />
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="location">%location%</label>
+                <!--<input type="text" class="form-control" id="location" ng-model="data.location" />-->
+
+                <input type="text" class="form-control" id="location"
+                       ng-model="asyncSelected"
+                       typeahead="address for address in getLocation($viewValue)"
+                       typeahead-loading="loadingLocations"
+                       typeahead-no-results="noResults">
+                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                <div ng-show="noResults">
+                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="category">%category%</label>
+                <select name="category" ng-model="category" class="form-control" id="category" ng-change="onCatChange()">
+                    <option ng-repeat="cat in categories" value="{{cat.id}}" ng-class="{parent: cat.parent}">{{cat.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="remuneration">%remuneration%</label>
+                <div class="input-group">
+                    <span class="input-group-addon">&euro;</span>
+                    <input id="remuneration" type="number" ng-model="data.remuneration" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="startMission">%startMission%</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="startMission"
+                           datepicker-popup="%dateOption%"
+                           ng-model="dates.start.date"
+                           is-open="dates.start.opened"
+                           min-date="dates.start.minDate"
+                           max-date="dates.start.maxDate"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           close-text="Close" />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openDate(dates.start)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="endMission">%endMission%</label>
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <label class="checkbox-label">
+                            <input type="checkbox"
+                                   ng-model="data.undeterminateEnd"
+                                   ng-change="changeUndeterminateEnd()">
+                            %undeterminate%
+                        </label>
+                    </span>
+                    <input type="text" class="form-control" id="endMission"
+                           datepicker-popup="%dateOption%"
+                           ng-model="dates.end.date"
+                           is-open="dates.end.opened"
+                           min-date="dates.end.minDate"
+                           max-date="dates.end.maxDate"
+                           datepicker-options="dateOptions"
+                           ng-required="true"
+                           ng-disabled="data.undeterminateEnd"
+                           close-text="Close"/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="openDate(dates.end)"
+                                ng-class="{disabled: data.undeterminateEnd}">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>%periodic%</label>
+                <div class="input-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.monday"> %mondayShort%
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.tuesday"> %tuesdayShort%
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.wednesday"> %wednesdayShort%
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.thursday"> %thursdayShort%
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.friday"> %fridayShort%
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.saturday"> %saturdayShort%
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="data.periodic.sunday"> %sundayShort%
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <label for="description">%description%</label>
+                <textarea id="description" ng-model="data.description" class="form-control" rows="6" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-4"></div>
+                <div class="col-md-2">
+                    <button class="btn btn-primary btn-admin" type="button" ng-click="ok()">OK</button>
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-default btn-admin" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
         </div>
     </form>
 </div>

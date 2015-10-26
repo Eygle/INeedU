@@ -13,7 +13,7 @@ INeedUControllers.controller('HomeCtrl', ['$scope',
         $scope.categories = getCategories();
 
         $scope.query = "";
-        $scope.category = $scope.categories[0];
+        $scope.category = "-1";
         console.log($scope.category);
         $scope.remuneration = 0;
 
@@ -30,34 +30,54 @@ INeedUControllers.controller('HomeCtrl', ['$scope',
         };
     }]);
 
-INeedUControllers.controller('DemandCtrl', ['$scope',
-    function($scope) {
+INeedUControllers.controller('DemandCtrl', ['$scope', '$http',
+    function($scope, $http) {
         $scope.data = {
             title: "",
             categoryId: -1,
             remuneration: 0,
-            duration: 1,
-            durationLabel: "",
             date: "",
-            periodic: false
+            periodic: {
+                monday: false,
+                tuesday: false,
+                wednesday: false,
+                thursday: false,
+                friday: false,
+                saturday: false,
+                sunday: false
+            },
+            undeterminateEnd: false
         };
 
         $scope.categories = getCategories();
-        $scope.category = $scope.categories[0];
+        $scope.category = "-1";
 
-        $scope.maxDate = new Date(2020, 5, 22);
-        $scope.minDate = new Date();
-        $scope.status = {
-            opened: false
+        $scope.dates = {
+            start: {
+                maxDate: new Date(2020, 1, 1),
+                minDate: new Date(),
+                opened: false,
+                date: new Date()
+            },
+            end: {
+                maxDate: new Date(2020, 1, 1),
+                minDate: new Date(),
+                opened: false,
+                date: new Date()
+            }
         };
 
-        $scope.today = function() {
-            $scope.dt = new Date();
+        $scope.changeUndeterminateEnd = function() {
+            if ($scope.data.undeterminateEnd) {
+                $scope.oldEndDate = $scope.dates.end.date;
+                $scope.dates.end.date = "";
+            } else {
+                $scope.dates.end.date = $scope.oldEndDate;
+            }
         };
-        $scope.today();
 
-        $scope.open = function($event) {
-            $scope.status.opened = true;
+        $scope.openDate = function(date) {
+            date.opened = true;
         };
 
         $scope.dateOptions = {
@@ -65,4 +85,16 @@ INeedUControllers.controller('DemandCtrl', ['$scope',
             startingDay: 1
         };
 
+        $scope.getLocation = function(val) {
+            return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+                params: {
+                    address: val,
+                    sensor: false
+                }
+            }).then(function(response){
+                return response.data.results.map(function(item){
+                    return item.formatted_address;
+                });
+            });
+        };
     }]);

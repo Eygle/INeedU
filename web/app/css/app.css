@@ -4,9 +4,6 @@ body {
   padding-top: 50px;
 }
 
-
-
-
 /*
  * Global add-ons
  */
@@ -81,6 +78,12 @@ body {
 }
 .main .page-header {
   margin-top: 0;
+}
+
+select .parent {
+  background-color: #ddd;
+  font-weight: bold !important;
+  text-transform: uppercase;
 }
 
 .footer {

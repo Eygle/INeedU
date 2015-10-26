@@ -8,15 +8,29 @@
   "contact": "Contact",
   "about": "A propos de nous",
 
+  "undeterminate": "Indéterminée",
+  "title": "Titre",
+
+  "dateOption": "dd/MM/yyyy",
+  "mondayShort": "Lun",
+  "tuesdayShort": "Mar",
+  "wednesdayShort": "Mer",
+  "thursdayShort": "Jeu",
+  "fridayShort": "Ven",
+  "saturdayShort": "Sam",
+  "sundayShort": "Dim",
+
   "newPost": "Nouvelle annonce",
 
   "demand": "Demander de l'aide",
   "offer": "Proposez vos services",
 
-  "title": "Titre",
+  "demandTitle": "Créer une demande d'aide",
   "location": "Lieu",
   "category": "Catégorie",
   "remuneration": "Rémunération",
-  "duration": "Durée de la mission",
+  "startMission": "Début de la mission",
+  "endMission": "Fin de la mission",
+  "periodic": "Répéter les",
   "description": "Description"
 }

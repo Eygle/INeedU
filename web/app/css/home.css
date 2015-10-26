@@ -2,6 +2,11 @@
 * Sidebar
 **/
 
+.home-page .btn-group {
+    position: absolute !important;
+    right: 40px;
+}
+
 .sidebar .option {
     padding: 5px !important;
 }

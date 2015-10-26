@@ -1,0 +1,12 @@
+.create-demand .btn-admin {
+    width: 100%;
+}
+
+.create-demand input[type=checkbox] {
+    vertical-align: middle;
+}
+
+.create-demand .checkbox-label {
+    margin-bottom: 0px;
+    font-weight: normal;
+}
