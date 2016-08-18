@@ -10,7 +10,7 @@ class Crypto {
     const KEY_FOLDER = "/home/eygle/";
 
     public static function encryptInfo($plainText, $keyName) {
-        $key = sha1(uniqid());
+        $key = uniqid() . sha1(md5(mt_rand( 0, 0xffff ) . uniqid() . md5(mt_rand( 0, 0xffff ))));
         $cypher = self::AESEncrypt($plainText, $key);
         file_put_contents(self::KEY_FOLDER . "$keyName.key", $key);
         return $cypher;

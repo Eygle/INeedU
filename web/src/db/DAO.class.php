@@ -1,4 +1,5 @@
 <?php
+
 class DAO{
 	// PDOs map indexed by dbhost+db+dbuser+dbpwd hash
 	private static $staticpdos = array();
@@ -240,6 +241,36 @@ class DAO{
 			$ns = CACHE_PREFIX."-$ns";
 		}
 		return $ns;
+	}
+
+	/**
+	 * @param Logger $logger
+	 * @param $startQuery
+	 * @param PDOStatement $stmt
+	 * @param array $parameters
+	 */
+	protected function traceQuery($logger, $startQuery, PDOStatement $stmt, array $parameters) {
+		if ($logger->isTraceEnabled ()) {
+			$logger->trace ( "Query :\n" . self::parms ( $stmt->queryString, $parameters ) . "\ntook: " . (self::getTimestamp () - $startQuery) );
+		}
+	}
+
+	private static function parms($string, $data) {
+		$indexed = $data == array_values ( $data );
+		foreach ( $data as $k => $v ) {
+			if (is_string ( $v ))
+				$v = "'$v'";
+			if ($indexed)
+				$string = preg_replace ( '/\?/', $v, $string, 1 );
+			else
+				$string = str_replace ( ":$k", $v, $string );
+		}
+		return $string;
+	}
+
+	public static function getTimestamp() {
+		$seconds = microtime ( true ); // true = float, false = weirdo "0.2342 123456" format
+		return round ( ($seconds * 1000) );
 	}
 }
 ?>

@@ -10,25 +10,57 @@
 require_once __DIR__ . "/DAO.class.php";
 
 class DBUser extends DAO {
+    private $logger;
+
+    public function __construct() {
+        parent::__construct();
+        $this->logger = Logger::getLogger(get_class($this));
+    }
+
     public function getUserInfo($userId) {
-        $stmt = $this->getPDO()->prepare("SELECT userName, email, rights
+        if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'In ' . __METHOD__ );
+        $start = self::getTimestamp();
+
+        $stmt = $this->getPDO()->prepare("SELECT userName, email, picture, rights, info, `key`
                                           FROM users
                                           WHERE userId = :userId LIMIT 1");
-        $stmt->execute(array("userId" => $userId));
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $parameters = array("userId" => $userId);
+        $stmt->execute($parameters);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->traceQuery ( $this->logger, $start, $stmt, $parameters );
+        if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'Out ' . __METHOD__ );
+
+        return $res;
     }
 
     public function getUserLoginTools($login) {
-        $stmt = $this->getPDO()->prepare("SELECT userId, password
+        if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'In ' . __METHOD__ );
+        $start = self::getTimestamp();
+
+        $stmt = $this->getPDO()->prepare("SELECT userId, `password`
                                           FROM users
                                           WHERE userName = :login OR email = :login LIMIT 1");
-        $stmt->execute(array("login" => $login));
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $parameters = array("login" => $login);
+        $stmt->execute($parameters);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->traceQuery ( $this->logger, $start, $stmt, $parameters );
+        if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'Out ' . __METHOD__ );
+
+        return $res;
     }
 
     public function createUser($userName, $email, $password) {
-        $stmt = $this->getPDO()->prepare("INSERT INTO users (userName, email, password)
+        if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'In ' . __METHOD__ );
+        $start = self::getTimestamp();
+
+        $stmt = $this->getPDO()->prepare("INSERT INTO users (userName, email, `password`)
                                           VALUES (:userName, :email, :password)");
-        $stmt->execute(array("userName" => $userName, "email" => $email, "password" => $password));
+        $parameters = array("userName" => $userName, "email" => $email, "password" => $password);
+        $stmt->execute($parameters);
+
+        $this->traceQuery ( $this->logger, $start, $stmt, $parameters );
+        if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'Out ' . __METHOD__ );
     }
 }

@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/web/bower_components" />
       <excludeFolder url="file://$MODULE_DIR$/web/build" />
       <excludeFolder url="file://$MODULE_DIR$/web/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/web_old" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
