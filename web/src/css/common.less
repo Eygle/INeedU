@@ -1,0 +1,55 @@
+@import "globals";
+
+* {
+  color: @text-color;
+}
+
+html {
+
+}
+
+body {
+  &  > .container {
+    padding: 60px 15px 0;
+  }
+}
+
+a {
+  color: @link-color;
+  text-decoration: none!important;
+
+  &:hover {
+    color: @link-color-hover;
+  }
+}
+
+table {
+  &.borderless {
+    td, th {
+      border: none!important;
+    }
+  }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: @footer-height;
+  background-color: #f5f5f5;
+
+  & > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: center;
+
+    table {
+      height: @footer-height;
+      margin-bottom: 0;
+
+      td {
+        vertical-align: middle;
+      }
+    }
+  }
+}

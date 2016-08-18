@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Replay Matcher" default="publish.locally">
+    <target name="-init.properties">
+        <buildnumber />
+        <property name="build.dir" value="build" />
+        <property name="local.www.dir" value="/var/www/local.ineedu" />
+        <property name="scp.host.preprod" value="195.154.91.110" />
+        <property name="scp.host.prod" value="195.154.91.110" />
+    </target>
+
+
+    <target name="-init" depends="-init.properties">
+        <mkdir dir="${build.dir}" />
+    </target>
+
+    <target name="-clean" description="Cleanup build artifacts" depends="-init">
+        <delete dir="${build.dir}" />
+    </target>
+
+    <target name="-prepare" depends="-clean" description="Prepare for build">
+        <copy todir="${build.dir}">
+            <fileset dir="${basedir}/src">
+                <include name="**/*.*" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="publish.locally" depends="-prepare">
+        <delete dir="${local.www.dir}">
+            <include name="**/**" />
+            <exclude name="**/logs/**" />
+        </delete>
+        <copy todir="${local.www.dir}">
+            <fileset dir="${basedir}/build" includes="**/*.*" />
+        </copy>
+        <copy file="dbconfig-local.php" tofile="${local.www.dir}/db/dbconfig.php" overwrite="true" />
+        <copy file="config-local.php" tofile="${local.www.dir}/conf.php" overwrite="true" />
+    </target>
+</project>

@@ -1,0 +1,22 @@
+{
+  "title": "INeedU",
+
+  "home": "Accueil",
+  "offers": "Offres",
+  "demands": "Demandes",
+  "my_account": "Mon compte",
+
+  "my_profil": "Mon profil",
+  "parameters": "Paramètres",
+  "deconnect": "Déconnexion",
+
+  "tuto_title": "INeedU, qu'est-ce que c'est ? Comment ça fonctionne ?",
+  "tuto_desc": "INeedU est une plateforme permettant de mettre en relations des voisins, plus ou moins éloignés, pour des échanges de services.",
+  "tuto_demands": "Si vous avez besoin d'un service, comme de tondre votre pelouse ou encore faire laver votre voiture, vous pouvez demander de l'aide sur ce site.",
+  "tuto_offers": "Que vous soyez à la recherche d'argent de poche, que vous ayez envie de faire du bénévolat ou si vous avez envie de vous rendre utiles n'hésitez pas à répondre aux annonces ou à proposer vos services.",
+
+  "about": "A propos",
+  "contact": "Contact",
+  "cookies": "Vos cookies",
+  "legal": "Info légales"
+}
