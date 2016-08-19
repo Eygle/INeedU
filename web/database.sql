@@ -27,5 +27,5 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(256) COLLATE utf8_bin NOT NULL,
   `picture` varchar(256) COLLATE utf8_bin NOT NULL,
   `info` varchar(256) COLLATE utf8_bin NOT NULL,
-  `key` varchar(53) CHARACTER SET ascii COLLATE ascii_bin NOT NULL
+  `key` varchar(53) CHARACTER SET ascii COLLATE ascii_bin NOT NULLX
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

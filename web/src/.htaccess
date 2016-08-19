@@ -1,0 +1,4 @@
+RewriteEngine on
+
+RewriteRule ^login$			login.php   [QSA,L]
+RewriteRule ^demands$       demands.php [QSA,L]

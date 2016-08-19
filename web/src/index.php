@@ -14,7 +14,7 @@ $page = "home";
 include_once __DIR__ . "/template/top.php";
 ?>
 
-<div class="container">
+<div id="home" class="container">
     <div class="page-header">
         <h1><?php echo I18n::get("tuto_title");?></h1>
     </div>
@@ -27,5 +27,3 @@ include_once __DIR__ . "/template/top.php";
 
 <?php
 include_once __DIR__ . "/template/bottom.php";
-?>
-

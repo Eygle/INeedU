@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . "/../vendors/log4php/Logger.php";
+require_once __DIR__ . "/dbconfig.php";
+
 class DAO{
 	// PDOs map indexed by dbhost+db+dbuser+dbpwd hash
 	private static $staticpdos = array();
@@ -26,6 +29,8 @@ class DAO{
 	private $dbPasswd;
 	private $errMode;
 	private $encoding;
+
+	private $logger;
 
 	protected $cachePrefix = NULL;
 
@@ -55,6 +60,7 @@ class DAO{
 		$this->dbPasswd = $password;
 		$this->errMode = $errorMode;
 
+		$this->logger = Logger::getLogger(get_class($this));
 
 		if (!$lazyPDOInit){
 			$this->createPDO($this->getMilliTimestamp(), $host, $db, $user, $password);
@@ -118,6 +124,8 @@ class DAO{
 				}else{
 					if ($this->errMode == self::PDO_ERR_IN_DA_POCKET){
 						print "Erreur de connexion<br/>";
+						$this->logger->error(print_r($e, true));
+						$this->logger->error("$host, $db, $user, $password");
 					}else if ($this->errMode == self::PDO_ERR_THROW_EXCEPTION){
 						throw $e;
 					}

@@ -8,7 +8,7 @@
  */
 
 require_once __DIR__ . "/Settings.class.php";
-require_once __DIR__ . "/ErrorManager.class.php";
+require_once __DIR__ . "/../utils/ErrorManager.class.php";
 
 class I18n {
     const ERROR_NO_SENTENCE_FOUND   = 0;

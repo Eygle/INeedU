@@ -1,4 +1,5 @@
 <?php
+
 while (($error = ErrorManager::pop()) !== null) {
     echo "<div class=\"alert alert-".($error->severity == ErrorManager::SEVERITY_ERROR ? "danger" : "warning")."\" role=\"alert\">
         <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">

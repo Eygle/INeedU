@@ -1,3 +1,7 @@
+<?php
+/** @var User $user */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +16,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/login.css" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,6 +46,7 @@
                 <li <?php if ($page == "offers") echo "class=\"active\"";?>><a href="offres"><?php echo I18n::get("offers");?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <?php if ($user->isLogged()) { ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo I18n::get("my_account");?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -50,6 +56,9 @@
                         <li><a href="#"><?php echo I18n::get("deconnect");?></a></li>
                     </ul>
                 </li>
+                <?php } else { ?>
+                <li><a href="login"><button class="btn btn-primary"><?php echo I18n::get("connexion");?></button></a></li>
+                <?php } ?>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
