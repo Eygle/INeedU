@@ -18,6 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user->login( Utils::getPost("username"), Utils::getPost("reg_password"), $errors);
         }
     }
+} else if (isset($_GET["logout"]) && $_GET["logout"] == "true") {
+    $user->logout();
 }
 
 foreach ($errors as $e) {

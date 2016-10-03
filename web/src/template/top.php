@@ -42,8 +42,8 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li <?php if ($page == "home") echo "class=\"active\"";?>><a href="/"><?php echo I18n::get("home");?></a></li>
-                <li <?php if ($page == "demands") echo "class=\"active\"";?>><a href="demandes"><?php echo I18n::get("demands");?></a></li>
-                <li <?php if ($page == "offers") echo "class=\"active\"";?>><a href="offres"><?php echo I18n::get("offers");?></a></li>
+                <li <?php if ($page == "demands") echo "class=\"active\"";?>><a href="demands"><?php echo I18n::get("demands");?></a></li>
+                <li <?php if ($page == "offers") echo "class=\"active\"";?>><a href="offers"><?php echo I18n::get("offers");?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <?php if ($user->isLogged()) { ?>
@@ -53,11 +53,11 @@
                         <li><a href="#"><?php echo I18n::get("my_profil");?></a></li>
                         <li><a href="#"><?php echo I18n::get("parameters");?></a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#"><?php echo I18n::get("deconnect");?></a></li>
+                        <li><a href="/logout"><?php echo I18n::get("logout");?></a></li>
                     </ul>
                 </li>
                 <?php } else { ?>
-                <li><a href="login"><button class="btn btn-primary"><?php echo I18n::get("connexion");?></button></a></li>
+                <li><a href="/login"><button class="btn btn-primary"><?php echo I18n::get("connexion");?></button></a></li>
                 <?php } ?>
             </ul>
         </div><!--/.nav-collapse -->

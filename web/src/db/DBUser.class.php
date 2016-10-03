@@ -72,9 +72,9 @@ class DBUser extends DAO {
         if ($this->logger->isTraceEnabled ()) $this->logger->trace ( 'In ' . __METHOD__ );
         $start = self::getTimestamp();
 
-        $stmt = $this->getPDO()->prepare("INSERT INTO users (username, email, `password`)
-                                          VALUES (:userName, :email, :password)");
-        $parameters = array("userName" => $userName, "email" => $email, "password" => $password);
+        $stmt = $this->getPDO()->prepare("INSERT INTO users (userId, username, email, `password`)
+                                          VALUES (:id, :userName, :email, :password)");
+        $parameters = array("id" => uniqid(dechex(rand())), "userName" => $userName, "email" => $email, "password" => $password);
         $stmt->execute($parameters);
 
         $this->traceQuery ( $this->logger, $start, $stmt, $parameters );

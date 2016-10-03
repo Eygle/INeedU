@@ -36,6 +36,28 @@
   "error_username_invalid_char": "Le nom d'utilisateur ne peut contenir que des chiffres et des lettres ainsi que les caractères '-' et '_'",
   "error_username_already_taken": "Le nom d'utilisateur existe déjà",
   "error_email_already_taken": "Un utilisateur existe déjà avec cet email",
+  "error_username_or_email_not_found": "Le nom d'utilisateur ou l'email n'existent pas",
+
+  "demands_title": "De quoi avez-vous besoin",
+  "new_demand_title": "De quoi avez-vous besoin",
+  "new_demand_form_title": "Titre de l'annonce",
+  "new_demand_form_desc": "Description",
+  "new_demand_form_desc_placeholder": "Decrivez vos besoins",
+
+  "placeholder_title": "Titre",
+
+  "categories": [
+    {"id": "service-to-people", "label": "Service aux personnes"},
+    {"id": "shopping", "label": "Faire des courses", "parent": "service-to-people"},
+    {"id": "company", "label": "Tenir compagnie", "parent": "service-to-people"},
+    {"id": "baby-sitting", "label": "Baby-Sitting", "parent": "service-to-people"},
+    {"id": "cooking", "label": "Cuisiner", "parent": "service-to-people"},
+    {"id": "home", "label": "Maison"},
+    {"id": "chores", "label": "Ménage", "parent": "home"},
+    {"id": "laundry", "label": "Lessive/Repassage", "parent": "home"},
+    {"id": "pool-cleaning", "label": "Nettoyage de piscine", "parent": "home"},
+    {"id": "computer-learning", "label": "Apprentissage Internet", "parent": "home"},
+  ],
 
   "about": "A propos",
   "contact": "Contact",

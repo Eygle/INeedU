@@ -100,7 +100,9 @@ class User {
     }
 
     public function logout() {
-
+        $_SESSION = array();
+        session_destroy();
+        $this->logged = false;
     }
 
     /**

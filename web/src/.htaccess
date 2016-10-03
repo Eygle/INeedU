@@ -1,4 +1,6 @@
 RewriteEngine on
 
 RewriteRule ^login$			login.php   [QSA,L]
+RewriteRule ^logout$		login.php?logout=true   [QSA,L]
 RewriteRule ^demands$       demands.php [QSA,L]
+RewriteRule ^new-demands$   new-demand.php [QSA,L]
